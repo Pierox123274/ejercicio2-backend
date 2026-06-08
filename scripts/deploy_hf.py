@@ -15,6 +15,9 @@ CREDENTIALS_FILE = ROOT / "firebase-service-account.json"
 
 
 def resolve_refresh_token() -> str:
+    env_token = os.getenv("FIREBASE_REFRESH_TOKEN", "")
+    if env_token:
+        return env_token
     if not FIREBASE_CONFIG.exists():
         return ""
     config = json.loads(FIREBASE_CONFIG.read_text(encoding="utf-8"))
@@ -52,7 +55,10 @@ def main() -> None:
         "https://ing-web-93d49.web.app,https://ing-web-93d49.firebaseapp.com,http://localhost:4201",
     )
 
-    if CREDENTIALS_FILE.exists():
+    credentials_json = os.getenv("FIREBASE_CREDENTIALS_JSON", "")
+    if credentials_json:
+        add_space_secret(SPACE_ID, "FIREBASE_CREDENTIALS_JSON", credentials_json)
+    elif CREDENTIALS_FILE.exists():
         add_space_secret(
             SPACE_ID,
             "FIREBASE_CREDENTIALS_JSON",
