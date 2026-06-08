@@ -17,8 +17,12 @@ API REST para CRUD de personas con Firebase Firestore.
 
 ## Requisitos para desplegar
 
-1. `firebase login` (o `firebase-service-account.json`)
-2. Token Hugging Face en `.hf-token` o `hf auth login`
+1. `firebase login` (usa tu sesion actual con Firestore)
+2. Cuenta en https://huggingface.co/join
+3. Token en https://huggingface.co/settings/tokens → guardar en `.hf-token`
+4. Ejecutar `.\deploy.ps1`
+
+Repositorio: https://github.com/Pierox123274/ejercicio2-backend
 
 ## Local
 
